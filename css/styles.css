@@ -339,6 +339,13 @@ body.loaded .hero__media { animation: heroIn .9s cubic-bezier(.2,.7,.2,1) .18s f
   display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;
   font-family:var(--font-display); font-size:13px; color:var(--muted); }
 
+/* ---------- ZIGZAG (alternate cards flip on desktop) ---------- */
+@media (min-width: 901px) {
+  .work > .case-wrap:nth-child(odd) .case--feature { grid-template-columns: 1fr 1.05fr; }
+  .work > .case-wrap:nth-child(odd) .case__media { order: 2; }
+  .work > .case-wrap:nth-child(odd) .case__body  { order: 1; }
+}
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 900px) {
   .nav__links { display:none; }
