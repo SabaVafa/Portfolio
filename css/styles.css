@@ -19,7 +19,7 @@
   --line:     rgba(199,206,218,0.10);
   --line-2:   rgba(199,206,218,0.18);
 
-  --grad: linear-gradient(100deg,#C7CEDA,#8FA0BE);
+  --grad: linear-gradient(105deg,#D3DBE8,#B4C0D4);
   --grad-text: linear-gradient(100deg,#C7CEDA,#6E7C9E 45%,#9FB4D6 70%,#C7CEDA);
 
   --font-display: "Space Grotesk", system-ui, sans-serif;
