@@ -94,29 +94,33 @@
     });
   }
 
-  // ---- Magnetic buttons ----
-  document.querySelectorAll(".mag").forEach(function (b) {
-    b.addEventListener("mousemove", function (e) {
-      var r = b.getBoundingClientRect();
-      var x = (e.clientX - r.left - r.width / 2) / r.width * 14;
-      var yy = (e.clientY - r.top - r.height / 2) / r.height * 14;
-      b.style.transform = "translate(" + x.toFixed(1) + "px," + yy.toFixed(1) + "px)";
+  // ---- Magnetic buttons (fine pointers only — avoids stuck offset on touch) ----
+  if (finePointer && !reduceMotion) {
+    document.querySelectorAll(".mag").forEach(function (b) {
+      b.addEventListener("mousemove", function (e) {
+        var r = b.getBoundingClientRect();
+        var x = (e.clientX - r.left - r.width / 2) / r.width * 14;
+        var yy = (e.clientY - r.top - r.height / 2) / r.height * 14;
+        b.style.transform = "translate(" + x.toFixed(1) + "px," + yy.toFixed(1) + "px)";
+      });
+      b.addEventListener("mouseleave", function () { b.style.transform = "translate(0,0)"; });
     });
-    b.addEventListener("mouseleave", function () { b.style.transform = "translate(0,0)"; });
-  });
+  }
 
-  // ---- Tilt on hover ----
-  document.querySelectorAll(".tilt").forEach(function (c) {
-    c.addEventListener("mousemove", function (e) {
-      var r = c.getBoundingClientRect();
-      var rx = ((e.clientY - r.top) / r.height - 0.5) * -6;
-      var ry = ((e.clientX - r.left) / r.width - 0.5) * 6;
-      c.style.transform = "perspective(900px) rotateX(" + rx.toFixed(2) + "deg) rotateY(" + ry.toFixed(2) + "deg)";
+  // ---- Tilt on hover (fine pointers only) ----
+  if (finePointer && !reduceMotion) {
+    document.querySelectorAll(".tilt").forEach(function (c) {
+      c.addEventListener("mousemove", function (e) {
+        var r = c.getBoundingClientRect();
+        var rx = ((e.clientY - r.top) / r.height - 0.5) * -6;
+        var ry = ((e.clientX - r.left) / r.width - 0.5) * 6;
+        c.style.transform = "perspective(900px) rotateX(" + rx.toFixed(2) + "deg) rotateY(" + ry.toFixed(2) + "deg)";
+      });
+      c.addEventListener("mouseleave", function () {
+        c.style.transform = "perspective(900px) rotateX(0) rotateY(0)";
+      });
     });
-    c.addEventListener("mouseleave", function () {
-      c.style.transform = "perspective(900px) rotateX(0) rotateY(0)";
-    });
-  });
+  }
 
   // ---- Expandable case studies ----
   document.querySelectorAll(".case__toggle").forEach(function (btn) {
