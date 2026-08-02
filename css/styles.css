@@ -363,7 +363,10 @@ body.loaded .hero__media { animation: heroIn .9s cubic-bezier(.2,.7,.2,1) .18s f
   .skillgrid { grid-template-columns:1fr; }
 }
 @media (max-width: 600px) {
-  .case__links { flex-direction: column-reverse; align-items: flex-start; }
+  .case__links { flex-direction: row; justify-content: flex-start; align-items: center; flex-wrap: nowrap; gap: 10px; }
+  .case__links .btn--ghost { order: 1; }      /* View live first */
+  .case__links .case__toggle { order: 2; }
+  .case__links .btn { white-space: nowrap; padding: 10px 15px; }
 }
 @media (max-width: 760px) {
   :root { --section-y: 44px; }   /* tighter but still uniform on mobile */
