@@ -725,6 +725,73 @@
       </div></div>
     </div>
 
+<!-- ===== ProductChat – conversational product advisor ===== -->
+    <div class="reveal case-wrap" style="transition-delay:.08s">
+      <article class="case case--feature tilt">
+        <div class="case__media">
+          <img src="assets/productchat.png" alt="ProductChat – a German-speaking AI product advisor for a JTL shop" />
+        </div>
+        <div class="case__body">
+          <div class="case__tags">
+            <span data-en="Conversational AI" data-de="Conversational AI">Conversational AI</span>
+            <span data-en="E-commerce" data-de="E-Commerce">E-commerce</span>
+            <span>RAG</span>
+          </div>
+          <h3 class="case__title"
+              data-en="A German-speaking product advisor grounded only in the live catalog"
+              data-de="Ein deutschsprachiger Produktberater, verankert allein im Live-Katalog">
+            A German-speaking product advisor grounded only in the live catalog
+          </h3>
+          <p class="case__client">Metzler GmbH</p>
+          <p class="case__summary"
+             data-en="An embeddable AI shopping assistant for a ~1,500-product JTL shop. It turns a shopper’s situation – “a parcel box for a two-family house with a doorbell” – into three correct, in-stock, honestly explained product cards in formal German. The shop’s selling logic lives in tested code; the language model only writes the words."
+             data-de="Ein einbettbarer KI-Einkaufsberater für einen JTL-Shop mit ~1.500 Produkten. Er verwandelt die Situation eines Kunden – „eine Paketbox für ein Zweifamilienhaus mit Türklingel“ – in drei korrekte, lieferbare, ehrlich erklärte Produktkarten in förmlichem Deutsch. Die Verkaufslogik des Shops steckt in getestetem Code; das Sprachmodell formuliert nur die Worte.">
+            An embeddable AI shopping assistant for a ~1,500-product JTL shop. It turns a shopper’s situation – “a parcel box for a two-family house with a doorbell” – into three correct, in-stock, honestly explained product cards in formal German. The shop’s selling logic lives in tested code; the language model only writes the words.
+          </p>
+          <ul class="case__chips">
+            <li data-en="RAG pipeline" data-de="RAG-Pipeline">RAG pipeline</li>
+            <li data-en="Filters + guards" data-de="Filter + Guards">Filters + guards</li>
+            <li data-en="Grounded answers" data-de="Verankerte Antworten">Grounded answers</li>
+            <li data-en="Formal German" data-de="Förmliches Deutsch">Formal German</li>
+            <li data-en="Embeddable widget" data-de="Einbettbares Widget">Embeddable widget</li>
+          </ul>
+          <div class="case__links">
+            <button class="btn btn--solid btn--sm case__toggle" type="button" aria-expanded="false">
+              <span class="lbl-closed" data-en="Read case study" data-de="Case Study lesen">Read case study</span>
+              <span class="lbl-open" data-en="Close" data-de="Schließen">Close</span>
+              <span class="chev" aria-hidden="true"><svg viewBox="0 0 12 8" width="11" height="8" fill="none"><path d="M1 1.5 6 6.5 11 1.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+          </div>
+        </div>
+      </article>
+      <div class="case__detail"><div class="case__detail-inner">
+        <div class="cd-grid">
+          <div class="cd-block">
+            <span class="cd-eyebrow" data-en="The challenge" data-de="Die Herausforderung">The challenge</span>
+            <p data-en="Shoppers describe a situation; the shop offers filters – and that gap costs sales and support time. Customers say “Mehrfamilienhaus”, “ohne Gravur”, “in Grau”, “unter 300 €”, but the catalog is full of near-identical variants (5 vs. 6 bell buttons, RAL 7016 vs. Grau, 2-Draht-BUS vs. IP), so the right product is easy to miss. Product knowledge is scattered across finder attributes, descriptions, bestseller sort and page markup, and the catalog churns on every sync. Above all, trust is non-negotiable: an assistant that invents a colour, a feature or a product is worse than none – and it all had to work with no template surgery on the JTL shop and a tight token budget."
+               data-de="Kunden beschreiben eine Situation; der Shop bietet Filter – und diese Lücke kostet Umsatz und Support-Zeit. Kunden sagen „Mehrfamilienhaus“, „ohne Gravur“, „in Grau“, „unter 300 €“, doch der Katalog ist voller fast identischer Varianten (5 vs. 6 Klingeltaster, RAL 7016 vs. Grau, 2-Draht-BUS vs. IP), sodass das richtige Produkt leicht übersehen wird. Produktwissen ist über Finder-Attribute, Beschreibungen, Bestseller-Sortierung und Seiten-Markup verstreut, und der Katalog ändert sich bei jeder Synchronisation. Vor allem ist Vertrauen nicht verhandelbar: Ein Assistent, der eine Farbe, ein Merkmal oder ein Produkt erfindet, ist schlimmer als keiner – und das alles musste ohne Eingriffe in die JTL-Templates und mit knappem Token-Budget funktionieren.">Shoppers describe a situation; the shop offers filters – and that gap costs sales and support time. Customers say “Mehrfamilienhaus”, “ohne Gravur”, “in Grau”, “unter 300 €”, but the catalog is full of near-identical variants (5 vs. 6 bell buttons, RAL 7016 vs. Grau, 2-Draht-BUS vs. IP), so the right product is easy to miss. Product knowledge is scattered across finder attributes, descriptions, bestseller sort and page markup, and the catalog churns on every sync. Above all, trust is non-negotiable: an assistant that invents a colour, a feature or a product is worse than none – and it all had to work with no template surgery on the JTL shop and a tight token budget.</p>
+          </div>
+          <div class="cd-block">
+            <span class="cd-eyebrow" data-en="What I did" data-de="Was ich getan habe">What I did</span>
+            <ul>
+              <li data-en="Built a retrieval-augmented pipeline: a temperature-0 model turns each message into structured intent (categories, price bounds, engraving), which becomes hard filters over a Mistral + Qdrant vector search – with BM25 injection for exact terms like “Unterputz” that embeddings dilute." data-de="Eine Retrieval-Augmented-Pipeline gebaut: Ein Temperature-0-Modell wandelt jede Nachricht in strukturierte Intention um (Kategorien, Preisgrenzen, Gravur), die zu harten Filtern über eine Mistral- + Qdrant-Vektorsuche wird – mit BM25-Injektion für exakte Begriffe wie „Unterputz“, die Embeddings verwässern.">Built a retrieval-augmented pipeline: a temperature-0 model turns each message into structured intent (categories, price bounds, engraving), which becomes hard filters over a Mistral + Qdrant vector search – with BM25 injection for exact terms like “Unterputz” that embeddings dilute.</li>
+              <li data-en="Put the shop’s selling logic in tested code, not a prompt: deterministic guards for negation (“ohne …”), product families, colour availability and best-selling defaults – so the language model only writes a short German lead-in and picks from the vetted products, never outside them." data-de="Die Verkaufslogik des Shops in getesteten Code gelegt, nicht in einen Prompt: deterministische Guards für Negation („ohne …“), Produktfamilien, Farbverfügbarkeit und Bestseller-Defaults – sodass das Sprachmodell nur einen kurzen deutschen Einstieg schreibt und aus den geprüften Produkten wählt, nie darüber hinaus.">Put the shop’s selling logic in tested code, not a prompt: deterministic guards for negation (“ohne …”), product families, colour availability and best-selling defaults – so the language model only writes a short German lead-in and picks from the vetted products, never outside them.</li>
+              <li data-en="Made honesty a feature: answers run in JSON mode over the retrieved products only, unknown IDs are dropped, and binding constraint notes make it say “nicht in Weiß erhältlich” instead of implying availability. Prompt-injection and “show me your rules” attempts are refused before any model call." data-de="Ehrlichkeit zum Feature gemacht: Antworten laufen im JSON-Modus nur über die gefundenen Produkte, unbekannte IDs werden verworfen, und bindende Constraint-Hinweise lassen ihn „nicht in Weiß erhältlich“ sagen, statt Verfügbarkeit zu suggerieren. Prompt-Injection und „zeig mir deine Regeln“-Versuche werden vor jedem Modellaufruf abgewiesen.">Made honesty a feature: answers run in JSON mode over the retrieved products only, unknown IDs are dropped, and binding constraint notes make it say “nicht in Weiß erhältlich” instead of implying availability. Prompt-injection and “show me your rules” attempts are refused before any model call.</li>
+              <li data-en="Shipped it embeddable and cheap: a 33 KB vanilla-JS widget in a Shadow DOM (no dependencies, no cookies, GTM- and consent-aware) that opens already grounded on a product via its JSON-LD. Every follow-up is a rule-based chip that costs zero tokens, and the whole service runs as one Docker container – FastAPI, SQLite and embedded Qdrant – covered by 114 unit tests and a QA harness." data-de="Einbettbar und günstig ausgeliefert: ein 33-KB-Vanilla-JS-Widget in einem Shadow DOM (keine Abhängigkeiten, keine Cookies, GTM- und Consent-fähig), das auf einer Produktseite bereits verankert öffnet – über deren JSON-LD. Jede Rückfrage ist ein regelbasierter Chip mit null Tokens, und der ganze Dienst läuft als ein Docker-Container – FastAPI, SQLite und eingebettetes Qdrant – abgedeckt von 114 Unit-Tests und einem QA-Harness.">Shipped it embeddable and cheap: a 33 KB vanilla-JS widget in a Shadow DOM (no dependencies, no cookies, GTM- and consent-aware) that opens already grounded on a product via its JSON-LD. Every follow-up is a rule-based chip that costs zero tokens, and the whole service runs as one Docker container – FastAPI, SQLite and embedded Qdrant – covered by 114 unit tests and a QA harness.</li>
+            </ul>
+          </div>
+          <div class="cd-block">
+            <span class="cd-eyebrow" data-en="Outcome" data-de="Ergebnis">Outcome</span>
+            <ul>
+              <li data-en="~1,490 products indexed and kept in sync with the shop; a full sync of ~4,200 URLs completes with zero churn." data-de="~1.490 Produkte indexiert und mit dem Shop synchron gehalten; eine vollständige Synchronisation von ~4.200 URLs läuft ohne Churn durch.">~1,490 products indexed and kept in sync with the shop; a full sync of ~4,200 URLs completes with zero churn.</li>
+              <li data-en="QA harness passes 24 of 24 search ground truths and 114 unit tests are green in CI; German answers were verified end-to-end on the shop’s real product pages, including the product-page opening from JSON-LD." data-de="Das QA-Harness besteht 24 von 24 Suchreferenzen und 114 Unit-Tests sind in der CI grün; deutsche Antworten wurden Ende-zu-Ende auf den echten Produktseiten des Shops verifiziert, inklusive des Produktseiten-Einstiegs aus JSON-LD.">QA harness passes 24 of 24 search ground truths and 114 unit tests are green in CI; German answers were verified end-to-end on the shop’s real product pages, including the product-page opening from JSON-LD.</li>
+              <li data-en="Roughly 3–4k tokens per answer with zero-token paths for greetings, refusals, dead-ends and refine chips – and deterministic, unit-tested behaviour that doesn’t drift with the model or its temperature." data-de="Rund 3–4k Tokens pro Antwort mit Null-Token-Pfaden für Begrüßungen, Absagen, Sackgassen und Refine-Chips – und deterministisches, per Unit-Test abgesichertes Verhalten, das nicht mit dem Modell oder seiner Temperatur driftet.">Roughly 3–4k tokens per answer with zero-token paths for greetings, refusals, dead-ends and refine chips – and deterministic, unit-tested behaviour that doesn’t drift with the model or its temperature.</li>
+            </ul>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
 <!-- ===== Konfigurator (moved to end) ===== -->
     <div class="reveal case-wrap" style="transition-delay:.08s">
       <article class="case case--feature tilt">
