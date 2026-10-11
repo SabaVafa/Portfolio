@@ -26,7 +26,7 @@
   --font-body:    "Inter", system-ui, sans-serif;
 
   --maxw: 1180px;
-  --pad:  clamp(20px, 5vw, 64px);
+  --pad:  clamp(24px, 5vw, 64px);
   --section-y: clamp(52px, 7vw, 88px);  /* consistent vertical rhythm for every section */
 }
 
@@ -122,8 +122,14 @@ body.loaded .hero__media { animation: heroIn .9s cubic-bezier(.2,.7,.2,1) .18s f
 .nav__burger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; }
 .nav__burger span { width:24px; height:2px; background:var(--text); border-radius:2px; }
 
-/* ---------- HERO ---------- */
-.hero { position: relative; padding: var(--section-y) var(--pad); overflow: hidden; }
+/* ---------- HERO (full-bleed band) ---------- */
+.hero {
+  position: relative; padding: var(--section-y) var(--pad); overflow: hidden;
+  background:
+    radial-gradient(1200px 560px at 74% 2%, rgba(159,180,214,0.10), transparent 62%),
+    linear-gradient(180deg, #0E1018 0%, #0C0D13 46%, var(--ink) 100%);
+  border-bottom: 1px solid var(--line);
+}
 .hero__waves { position:absolute; inset:0; z-index:0; pointer-events:none; }
 .hero__waves .wave { position:absolute; left:-5%; width:110%; }
 .hero__waves .w1 { top:24%; opacity:.55; animation: drift 14s ease-in-out infinite; }
@@ -171,7 +177,7 @@ body.loaded .hero__media { animation: heroIn .9s cubic-bezier(.2,.7,.2,1) .18s f
 .hero__status span:last-child { font-size:12px; color:var(--silver); }
 
 /* marquee */
-.marquee { margin-top:var(--section-y); border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; white-space:nowrap; position:relative; z-index:2; }
+.marquee { margin:var(--section-y) calc(-1 * var(--pad)) 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; white-space:nowrap; position:relative; z-index:2; }
 .marquee__track { display:inline-flex; animation:scroll 40s linear infinite; }
 .marquee__track span { font-family:var(--font-display); font-size:14px; color:var(--muted); padding:16px 26px; position:relative; }
 .marquee__track span::after { content:"•"; position:absolute; right:-2px; color:var(--glow); opacity:.6; }
@@ -372,7 +378,33 @@ body.loaded .hero__media { animation: heroIn .9s cubic-bezier(.2,.7,.2,1) .18s f
   :root { --section-y: 44px; }   /* tighter but still uniform on mobile */
   .section-head { margin-bottom: 22px; }
 }
+/* ---------- BACK TO TOP ---------- */
+.totop {
+  position: fixed;
+  right: clamp(16px, 4vw, 30px);
+  bottom: calc(clamp(16px, 4vw, 30px) + env(safe-area-inset-bottom, 0px));
+  z-index: 90;
+  width: 46px; height: 46px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  color: var(--periwink);
+  background: rgba(16,17,25,0.82);
+  border: 1px solid var(--line-2);
+  backdrop-filter: saturate(140%) blur(10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.45);
+  cursor: pointer;
+  opacity: 0; transform: translateY(14px) scale(.9); pointer-events: none;
+  transition: opacity .3s ease, transform .3s cubic-bezier(.2,.7,.2,1), background .2s, color .2s, border-color .2s;
+}
+.totop.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+.totop:hover { background: var(--grad); color: var(--ink); border-color: transparent; transform: translateY(-2px); }
+.totop:active { transform: translateY(0) scale(.94); }
+.totop:focus-visible { outline: 2px solid var(--periwink); outline-offset: 3px; }
+body.cursor-on .totop { cursor: none; }
+
 @media (prefers-reduced-motion: reduce) {
+  .totop { transition: opacity .2s ease; transform: none; }
+  .totop.is-visible { transform: none; }
   .hero__waves .wave, .marquee__track, .grad, .dot, .hero__media { animation: none !important; }
   .rev > span { transform: none; animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }

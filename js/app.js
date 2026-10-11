@@ -152,10 +152,37 @@
   var burger = document.getElementById("burger");
   var links = document.querySelector(".nav__links");
   if (burger && links) {
+    function closeMenu() { links.style.cssText = ""; }
     burger.addEventListener("click", function () {
       var open = links.style.display === "flex";
       links.style.cssText = open ? "" :
         "display:flex;position:absolute;flex-direction:column;top:62px;right:var(--pad);background:var(--ink-2);padding:16px 20px;border-radius:12px;border:1px solid var(--line-2);gap:14px;";
+    });
+    // close the mobile menu after tapping a link
+    links.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", closeMenu);
+    });
+  }
+
+  // ---- Back to top (hidden while the footer is in view so it never covers it) ----
+  var toTop = document.getElementById("totop");
+  if (toTop) {
+    var footEl = document.querySelector(".foot");
+    var footerIn = false;
+    var showAt = function () { return Math.max(window.innerHeight * 0.9, 480); };
+    var updateToTop = function () {
+      var y = window.pageYOffset || document.documentElement.scrollTop;
+      toTop.classList.toggle("is-visible", y > showAt() && !footerIn);
+    };
+    if (footEl && "IntersectionObserver" in window) {
+      new IntersectionObserver(function (es) {
+        footerIn = es[0].isIntersecting; updateToTop();
+      }, { rootMargin: "0px 0px -8% 0px" }).observe(footEl);
+    }
+    window.addEventListener("scroll", updateToTop, { passive: true });
+    updateToTop();
+    toTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
     });
   }
 })();
