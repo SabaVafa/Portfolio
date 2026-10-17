@@ -303,6 +303,7 @@ body.loaded .hero__media { animation: heroIn .9s cubic-bezier(.2,.7,.2,1) .18s f
 .about__grid { display:grid; grid-template-columns:1.5fr 1fr; gap:clamp(28px,5vw,64px); align-items:start; }
 .about__copy p { color:var(--read); font-size:clamp(16px,1.5vw,19px); line-height:1.7; margin-bottom:18px; max-width:60ch; }
 .about__copy p:last-child { margin-bottom:0; }
+.about__cta { margin-top:26px; }
 .facts { list-style:none; display:flex; flex-direction:column; gap:0; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:linear-gradient(160deg,#101119,#0C0D13); }
 .facts li { display:flex; flex-direction:column; gap:5px; padding:16px 20px; }
 .facts li + li { border-top:1px solid var(--line); }
