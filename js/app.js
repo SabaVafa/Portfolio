@@ -26,6 +26,8 @@
   var finePointer = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   if (finePointer && !reduceMotion) {
     var ring = document.createElement("div"); ring.className = "cur";
+    var curLabel = document.createElement("span"); curLabel.className = "cur__label"; curLabel.textContent = "View ↗";
+    ring.appendChild(curLabel);
     var dot = document.createElement("div"); dot.className = "cur-dot";
     document.body.appendChild(ring); document.body.appendChild(dot);
     document.body.classList.add("cursor-on");
@@ -40,14 +42,17 @@
     document.addEventListener("mousedown", function () { ring.classList.add("is-down"); });
     document.addEventListener("mouseup", function () { ring.classList.remove("is-down"); });
 
-    var hoverSel = "a, button, .case--feature, .lang__btn, .nav__burger, .case__media";
+    var btnSel = "a, button, .lang__btn, .nav__burger";
+    var cardSel = ".case__media, .case--feature";
     document.addEventListener("mouseover", function (e) {
-      if (e.target.closest && e.target.closest(hoverSel)) { ring.classList.add("is-hover"); dot.classList.add("is-hover"); }
-    });
-    document.addEventListener("mouseout", function (e) {
-      if (e.target.closest && e.target.closest(hoverSel) && !(e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest(hoverSel))) {
-        ring.classList.remove("is-hover"); dot.classList.remove("is-hover");
-      }
+      var t = e.target;
+      var onBtn = t.closest && t.closest(btnSel);
+      var onCard = t.closest && t.closest(cardSel);
+      var view = !!onCard && !onBtn;
+      ring.classList.toggle("is-view", view);
+      dot.classList.toggle("is-view", view);
+      ring.classList.toggle("is-hover", !!onBtn);
+      dot.classList.toggle("is-hover", !!onBtn);
     });
 
     (function loop() {
@@ -184,5 +189,21 @@
     toTop.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
     });
+  }
+
+  // ---- Scroll progress bar ----
+  var prog = document.getElementById("scrollProg");
+  if (prog) {
+    var ptick = false;
+    var updateProg = function () {
+      var de = document.documentElement;
+      var max = de.scrollHeight - de.clientHeight;
+      var r = max > 0 ? (window.pageYOffset || de.scrollTop) / max : 0;
+      prog.style.transform = "scaleX(" + Math.min(1, Math.max(0, r)).toFixed(4) + ")";
+      ptick = false;
+    };
+    window.addEventListener("scroll", function () { if (!ptick) { ptick = true; requestAnimationFrame(updateProg); } }, { passive: true });
+    window.addEventListener("resize", updateProg, { passive: true });
+    updateProg();
   }
 })();

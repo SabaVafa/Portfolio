@@ -55,6 +55,10 @@ body.cursor-on, body.cursor-on a, body.cursor-on button, body.cursor-on .case__t
 .cur.is-hover { width: 58px; height: 58px; background: rgba(159,180,214,0.12); border-color: var(--periwink); }
 .cur.is-down { width: 28px; height: 28px; background: rgba(159,180,214,0.2); }
 .cur-dot.is-hover { opacity: 0; }
+.cur__label { position:absolute; inset:0; display:grid; place-items:center; font-family:var(--font-display); font-weight:600; font-size:11px; letter-spacing:.03em; color:var(--ink); opacity:0; transition:opacity .2s; white-space:nowrap; }
+.cur.is-view { width:74px; height:74px; background:var(--silver); border-color:transparent; }
+.cur.is-view .cur__label { opacity:1; }
+.cur-dot.is-view { opacity:0; }
 
 /* ---------- INTRO (page-load) ---------- */
 body:not(.loaded) { overflow: hidden; }
@@ -279,9 +283,11 @@ body.loaded .hero__media { animation: heroIn .9s cubic-bezier(.2,.7,.2,1) .18s f
 
 /* lively in-view stagger (card internals move, wrapper only fades) */
 .case-wrap.reveal { transform:none; }
-.case-wrap .case__media,
 .case-wrap .case__body > * { opacity:0; transform:translateY(18px); }
-.case-wrap.is-in .case__media { animation:caseIn .8s cubic-bezier(.2,.7,.2,1) .04s forwards; }
+/* premium clip-path wipe reveal for the framed image */
+.case-wrap .case__media { clip-path: inset(0 0 100% 0 round 12px); }
+.case-wrap.is-in .case__media { animation: mediaReveal .95s cubic-bezier(.2,.7,.2,1) .05s forwards; }
+@keyframes mediaReveal { to { clip-path: inset(0 0 0% 0 round 12px); } }
 .case-wrap.is-in .case__body > *:nth-child(1) { animation:caseIn .7s cubic-bezier(.2,.7,.2,1) .12s forwards; }
 .case-wrap.is-in .case__body > *:nth-child(2) { animation:caseIn .7s cubic-bezier(.2,.7,.2,1) .18s forwards; }
 .case-wrap.is-in .case__body > *:nth-child(3) { animation:caseIn .7s cubic-bezier(.2,.7,.2,1) .24s forwards; }
@@ -383,6 +389,15 @@ body.loaded .hero__media { animation: heroIn .9s cubic-bezier(.2,.7,.2,1) .18s f
   :root { --section-y: 44px; }   /* tighter but still uniform on mobile */
   .section-head { margin-bottom: 22px; }
 }
+/* ---------- SCROLL PROGRESS ---------- */
+.scroll-prog {
+  position: fixed; top: 0; left: 0; height: 2px; width: 100%;
+  transform: scaleX(0); transform-origin: 0 50%;
+  background: var(--grad); z-index: 80;
+  box-shadow: 0 0 10px rgba(159,180,214,0.45);
+  will-change: transform; pointer-events: none;
+}
+
 /* ---------- BACK TO TOP ---------- */
 .totop {
   position: fixed;
@@ -422,6 +437,7 @@ body.cursor-on .totop { cursor: none; }
   }
   .case-wrap .case__media, .case-wrap .case__body > *, .cd-block {
     animation: none !important; opacity: 1 !important; transform: none !important; transition: none !important;
+    clip-path: none !important;
   }
   .case--feature:hover .case__media img { transform: none; }
   .case__media::after { display: none; }
