@@ -197,7 +197,7 @@ body.loaded .hero__media { animation: heroIn .9s cubic-bezier(.2,.7,.2,1) .18s f
 .section-num { font-family:var(--font-display); font-size:13px; font-weight:500; color:var(--glow); letter-spacing:.1em; }
 .section-title { font-family:var(--font-display); font-weight:500; font-size:clamp(24px,3.4vw,38px); letter-spacing:-.01em; }
 
-.case--feature { display:grid; grid-template-columns:1.05fr 1fr; gap:clamp(44px,7vw,120px); align-items:center;
+.case--feature { display:grid; grid-template-columns:1.3fr 1fr; gap:clamp(32px,4.5vw,72px); align-items:center;
   background:linear-gradient(160deg,#101119,#0C0D13); border:1px solid var(--line); border-radius:20px; padding:clamp(18px,3vw,32px);
   transition:transform .25s ease, border-color .4s ease, box-shadow .4s ease; transform-style:preserve-3d; }
 .case--feature:hover { border-color:rgba(159,180,214,0.28); box-shadow:0 34px 90px rgba(0,0,0,.5); }
@@ -359,7 +359,7 @@ body.loaded .hero__media { animation: heroIn .9s cubic-bezier(.2,.7,.2,1) .18s f
 
 /* ---------- ZIGZAG (alternate cards flip on desktop) ---------- */
 @media (min-width: 901px) {
-  .work > .case-wrap:nth-child(odd) .case--feature { grid-template-columns: 1fr 1.05fr; }
+  .work > .case-wrap:nth-child(odd) .case--feature { grid-template-columns: 1fr 1.3fr; }
   .work > .case-wrap:nth-child(odd) .case__media { order: 2; }
   .work > .case-wrap:nth-child(odd) .case__body  { order: 1; }
 }
